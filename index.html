@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
+
+
+
+
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,6 +20,18 @@
   <link rel="stylesheet" href="http://dghpsh.agcontrol.gob.ar/test/ssit.agcontrol.gob.ar/Content/SiteObelisco2HyF.css" />
  
   <script defer src="https://cdn.jsdelivr.net/npm/@gcba/obelisco-v2@X.X.X/dist/scripts.min.js"></script>
+
+
+
+   <!-- Obelisco -->
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+   
+   <link rel="stylesheet" href="../../node_modules/@gcba/obelisco-v2/dist/styles.css">
+   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
+
+
 
   <style>
     /* Ajustes mínimos para emular la captura */
@@ -55,117 +73,154 @@
 
 <body>
   <!-- Header -->
-  <header class="o-header navbar" id="header" role="banner">
+  
+  <header class="o-header navbar" role="banner">
+    <a href="#main" class="skip-to-main-content-link">
+        Saltar al contenido principal
+    </a>
     <div class="container header-container">
-        <a href="https://buenosaires.gob.ar" class="navbar-brand">
-            <img class="d-none d-xl-block" src="https://gcba.github.io/Obelisco-V2/images/logo_ba.svg" alt="Inicio">
-            <img class="d-xl-none" src="https://gcba.github.io/Obelisco-V2/images/logo_ba_mobile.svg" alt="Inicio">
+        <a href="/index.php" class="navbar-brand">
+            <img class="d-xl-block" src="https://gcba.github.io/Obelisco-V2/images/logo_ba.svg" alt="Gobierno de la Ciudad de Buenos Aires - Inicio" style="">
+
+            <h5 style="    margin: 0 15px;">Libro Digital</h5>
         </a>
-
-        
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-expanded="false" aria-label="Menú">
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarContent">
-
-
-
-
-                    <div class="navbar-content">
-                        <div class="navbar-sections">
-                            <nav>
-                                <ul class="nav nav-pills nav-sections">
-                                    <li class="nav-item">
-                                        <a class="nav-link nav-link-lg" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$ctl01&quot;, &quot;&quot;, false, &quot;&quot;, &quot;./&quot;, false, true))">
-                                <i class="imoon imoon-home"></i>
-                                <span>Inicio</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a id="LoginView1_LinkButton1" class="nav-link nav-link-lg" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$LinkButton1&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Solicitud/Bandeja&quot;, false, true))">
-                                <i class="imoon imoon-inbox"></i>
-                                <span>Bandeja de Trámites</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a id="LoginView1_LinkButton3" class="nav-link nav-link-lg" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$LinkButton3&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Solicitud/BandejaNotificaciones&quot;, false, true))">
-                                            <i class="imoon imoon-bell"></i>
-                                            <span>Bandeja de Notificaciones</span>
-                                            <span id="LoginView1_Label1" class="badge text-danger"></span></a>
-                                    </li>
-
-                                </ul>
-                            </nav>
-                        </div>
-
-
-
-
-
-
-                        <div class="navbar-user">
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-dropdown btn-lg btn-dropdown-border" data-bs-toggle="dropdown" aria-expanded="true">
-                                    <span class="material-symbols-rounded" aria-hidden="true">person</span>
-                                    <span class="btn-dropdown-text ellipsis-1">
-
-                                        <span id="LoginView1_lblUsername">Rosana, Mariela Celi Bonfiglio</span>
-
-                                    </span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end">
-
-
-                                    <a id="LoginView1_LinkButton2" class="dropdown-item" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$LinkButton2&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Account/Manage&quot;, false, true))">
-
-                                        <span class="item-text">Modificar contraseña</span>
-                                         
-                                    </a>
-
-                                    <a id="LoginView1_LinkButton7" class="dropdown-item" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$LinkButton7&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Solicitud/ConversionUsuarios&quot;, false, true))">
-                                        <span class="item-text">Transferir trámites anteriores</span>
-                                         
-                                    </a>
-
-
-                                    <a id="LoginView1_LinkButton8" class="dropdown-item item-danger" href="javascript:__doPostBack('ctl00$LoginView1$LinkButton8','')">
-
-                                        <span class="item-text">Cerrar sesión</span>
-
-                                         
-
-                                        <span class="material-symbols-rounded" aria-hidden="true">logout</span>
-
-                                    </a>
-
-
-
-
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent3" aria-controls="navbarContent3" aria-expanded="false" aria-label="Menú"></button>
+        <div class="collapse navbar-collapse" id="navbarContent3">
+        <div class="navbar-content">
+            <div class="navbar-sections">
+            <nav>
+                <p class="navbar-sections-title">Secciones</p>
+                <ul class="nav nav-pills nav-sections">
+                <li class="dropdown">
+                    <button type="button" class="btn btn-dropdown btn-lg" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="btn-dropdown-text ellipsis-1">Navegación</span>
+                    <span class="material-symbols-rounded btn-dropdown-icon" aria-label="hidden">
+                        expand_more
+                    </span>
+                    </button>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item item-link" href="#">
+                        <span class="item-text">Ver más</span>
+                        <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+                    </a>
                     </div>
-
-
-
-
-
-
-
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-lg" href="#">
+                    <span>Navegación</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <button type="button" class="btn btn-dropdown btn-lg" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="btn-dropdown-text ellipsis-1">Navegación</span>
+                    <span class="material-symbols-rounded btn-dropdown-icon" aria-label="hidden">
+                        expand_more
+                    </span>
+                    </button>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <span class="item-text">Navegación</span>
+                    </a>
+                    <a class="dropdown-item item-link" href="#">
+                        <span class="item-text">Ver más</span>
+                        <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+                    </a>
+                    </div>
+                </li>
+                </ul>
+            </nav>
+            </div>
+            <div class="navbar-search">
+            <form class="form-search">
+                <label htmlfor="header-search" class="form-label sr-only">Buscador</label>
+                <div class="search-container">
+                <input type="search" class="form-control input-search input-search-with-button" id="header-search" placeholder="Buscador">
+                <button class="reset" type="reset" aria-label="Borrar"></button>
+                <button class="button-search" type="submit" aria-label="Buscar"></button>
                 </div>
-            
-
+            </form>
+            </div>
+            <div class="navbar-user">
+            <div class="dropdown">
+                <button type="button" class="btn btn-dropdown btn-lg btn-dropdown-border notification" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="material-symbols-rounded" aria-hidden="true">person</span>
+                <span class="btn-dropdown-text ellipsis-1">Perfil</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item" href="#"><span class="item-text">Navegación 1</span></a>
+                <a class="dropdown-item" href="#"><span class="item-text">Navegación 2</span></a>
+                <a class="dropdown-item" href="#"><span class="item-text">Navegación 3</span></a>
+                <a class="dropdown-item" href="#">
+                    <span class="item-text">Notificaciones</span>
+                    <span class="item-notifications"></span>
+                </a>
+                <a class="dropdown-item item-danger" href="#">
+                    <span class="item-text">Cerrar sesión</span>
+                    <span class="material-symbols-rounded" aria-hidden="true">logout</span>
+                </a>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="navbar-user-mobile">
+            <nav>
+            <p class="navbar-user-mobile-title">Perfil</p>
+            <ul class="nav flex-column nav-pills nav-user">
+                <li class="nav-item"><a class="nav-link nav-link-lg" href="#"><span>Navegación 1</span></a></li>
+                <li class="nav-item"><a class="nav-link nav-link-lg" href="#"><span>Navegación 2</span></a></li>
+                <li class="nav-item"><a class="nav-link nav-link-lg" href="#"><span>Navegación 3</span></a></li>
+                <li class="nav-item"><a class="nav-link nav-link-lg" href="#">
+                <span>Notificaciones</span>
+                <span class="item-notifications"></span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link nav-link-danger nav-link-lg" href="#">
+                <div class="nav-icon">
+                    <span class="material-symbols-rounded" aria-hidden="true">logout</span>
+                    <span>Cerrar sesión</span>
+                </div></a>
+                </li>
+            </ul>
+            </nav>
+        </div>
+        </div>
     </div>
-
     <div class="header-backdrop"></div>
 </header>
+
+
 
   <!-- Hero -->
   <section class="hero-lg">
