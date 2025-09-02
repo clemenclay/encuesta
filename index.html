@@ -1,29 +1,431 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="robots" content="noindex">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/survey-core@2.0.1/survey.core.min.js"></script>
-    <script src="https://unpkg.com/survey-core@2.0.1/survey.i18n.min.js"></script>
-    <script src="https://unpkg.com/survey-core@2.0.1/themes/index.min.js"></script>
-    <script src="https://unpkg.com/survey-js-ui@2.0.1/survey-js-ui.min.js"></script>
-    <script src="https://unpkg.com/survey-creator-core@2.0.1/survey-creator-core.min.js"></script>
-    <script src="https://unpkg.com/survey-creator-core@2.0.1/survey-creator-core.i18n.min.js"></script>
-    <script src="https://unpkg.com/survey-creator-core@2.0.1/themes/index.min.js"></script>
-    <script src="https://unpkg.com/survey-creator-js@2.0.1/survey-creator-js.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/survey-core@2.0.1/survey-core.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/survey-creator-core@2.0.1/survey-creator-core.min.css" />
-    <link rel="stylesheet" href ="./index.css" />
-  </head>
-  <body>
-    <!-- Uncomment the following lines to use Ace Editor in the JSON Editor tab -->
-    <!-- 
-    <script src="https://unpkg.com/ace-builds/src-min-noconflict/ace.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/ace-builds/src-min-noconflict/ext-searchbox.js" type="text/javascript"></script>
-    -->
-    
-    <div id="surveyCreatorContainer" style="position: absolute; height: 100%; width: 100%"></div>
-    <script src="./index.js"></script>
-  </body>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Libro Digital – Consulta de Actas y Acceso</title>
+
+  <!-- Fuentes (opcionales, como en sitios GCBA) -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Obelisco v2 (reemplazá X.X.X por la versión que uses) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gcba/obelisco-v2@X.X.X/dist/styles.min.css" />
+
+  <link rel="stylesheet" href="http://dghpsh.agcontrol.gob.ar/test/ssit.agcontrol.gob.ar/Content/SiteObelisco2HyF.css" />
+ 
+  <script defer src="https://cdn.jsdelivr.net/npm/@gcba/obelisco-v2@X.X.X/dist/scripts.min.js"></script>
+
+  <style>
+    /* Ajustes mínimos para emular la captura */
+    .hero-lg {
+      background-color: #15283b; /* azul oscuro */
+      color: #ffffff;
+      padding: 3rem 0 2.25rem;
+    }
+    .hero-lg .lead {
+      color: rgba(255,255,255,.85);
+      max-width: 58ch;
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+    }
+    .card-hover {
+      transition: transform .2s ease;
+    }
+    .news-card .badge {
+      font-size: .7rem;
+    }
+    .footer-top {
+      background: #0c1a28;
+      color: #fff;
+      padding: 2rem 0;
+    }
+    .footer-bottom {
+      background: #07131e;
+      color: #cdd6df;
+      padding: 1rem 0;
+      font-size: .875rem;
+    }
+    .gcba-logo {
+      height: 28px;
+      width: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="o-header navbar" id="header" role="banner">
+    <div class="container header-container">
+        <a href="https://buenosaires.gob.ar" class="navbar-brand">
+            <img class="d-none d-xl-block" src="https://gcba.github.io/Obelisco-V2/images/logo_ba.svg" alt="Inicio">
+            <img class="d-xl-none" src="https://gcba.github.io/Obelisco-V2/images/logo_ba_mobile.svg" alt="Inicio">
+        </a>
+
+        
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-expanded="false" aria-label="Menú">
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+
+
+
+
+                    <div class="navbar-content">
+                        <div class="navbar-sections">
+                            <nav>
+                                <ul class="nav nav-pills nav-sections">
+                                    <li class="nav-item">
+                                        <a class="nav-link nav-link-lg" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$ctl01&quot;, &quot;&quot;, false, &quot;&quot;, &quot;./&quot;, false, true))">
+                                <i class="imoon imoon-home"></i>
+                                <span>Inicio</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="LoginView1_LinkButton1" class="nav-link nav-link-lg" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$LinkButton1&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Solicitud/Bandeja&quot;, false, true))">
+                                <i class="imoon imoon-inbox"></i>
+                                <span>Bandeja de Trámites</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="LoginView1_LinkButton3" class="nav-link nav-link-lg" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$LinkButton3&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Solicitud/BandejaNotificaciones&quot;, false, true))">
+                                            <i class="imoon imoon-bell"></i>
+                                            <span>Bandeja de Notificaciones</span>
+                                            <span id="LoginView1_Label1" class="badge text-danger"></span></a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+
+
+
+
+
+
+                        <div class="navbar-user">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-dropdown btn-lg btn-dropdown-border" data-bs-toggle="dropdown" aria-expanded="true">
+                                    <span class="material-symbols-rounded" aria-hidden="true">person</span>
+                                    <span class="btn-dropdown-text ellipsis-1">
+
+                                        <span id="LoginView1_lblUsername">Rosana, Mariela Celi Bonfiglio</span>
+
+                                    </span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end">
+
+
+                                    <a id="LoginView1_LinkButton2" class="dropdown-item" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$LinkButton2&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Account/Manage&quot;, false, true))">
+
+                                        <span class="item-text">Modificar contraseña</span>
+                                         
+                                    </a>
+
+                                    <a id="LoginView1_LinkButton7" class="dropdown-item" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LoginView1$LinkButton7&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Solicitud/ConversionUsuarios&quot;, false, true))">
+                                        <span class="item-text">Transferir trámites anteriores</span>
+                                         
+                                    </a>
+
+
+                                    <a id="LoginView1_LinkButton8" class="dropdown-item item-danger" href="javascript:__doPostBack('ctl00$LoginView1$LinkButton8','')">
+
+                                        <span class="item-text">Cerrar sesión</span>
+
+                                         
+
+                                        <span class="material-symbols-rounded" aria-hidden="true">logout</span>
+
+                                    </a>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            
+
+    </div>
+
+    <div class="header-backdrop"></div>
+</header>
+
+  <!-- Hero -->
+  <section class="hero-lg">
+    <div class="container">
+      <div class="mb-2">
+        <a class="link-light link-underline" href="#">Agencia Gubernamental de Control</a>
+      </div>
+
+      <h1 class="display-5 fw-bold mb-2">Consulta de Actas Digitales y Acceso a<br />Libro Digital</h1>
+      <p class="lead mb-4">
+        Sistema para la consulta y descarga de actas digitales realizadas sobre tu comercio. Además, podés acceder con tu clave ciudad al Libro Digital de tu actividad habilitada para obtener información relacionada.
+      </p>
+
+      <div class="d-flex gap-2 flex-wrap">
+        <a href="#" class="btn btn-light fw-semibold">Ingresá con tu Clave Ciudad</a>
+        <a href="#" class="btn btn-outline-light">Descargá el Instructivo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accesos destacados -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="h3 mb-4">Accesos destacados</h2>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-3">
+          <a class="card card-hover h-100 text-decoration-none" href="#">
+            <div class="card-body">
+              <h3 class="h6 mb-1 text-primary">Actas Digitales</h3>
+              <p class="mb-0 text-body-secondary">Vas a descargar tu Acta Digital labrada</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <a class="card card-hover h-100 text-decoration-none" href="#">
+            <div class="card-body">
+              <h3 class="h6 mb-1 text-primary">Simulá tu Inspección</h3>
+              <p class="mb-0 text-body-secondary">Conocé el estado general de tu comercio</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <a class="card card-hover h-100 text-decoration-none" href="#">
+            <div class="card-body">
+              <h3 class="h6 mb-1 text-primary">Mesa de Ayuda</h3>
+              <p class="mb-0 text-body-secondary">Iniciá o consultá tus trámites de forma online</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <a class="card card-hover h-100 text-decoration-none" href="#">
+            <div class="card-body">
+              <h3 class="h6 mb-1 text-primary">Inspecciones BA</h3>
+              <p class="mb-0 text-body-secondary">Accedé a ver las inspecciones planificadas</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Noticias -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-12 col-lg-4">
+          <a class="card news-card h-100 text-decoration-none" href="#">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="" />
+            <div class="card-body">
+              <span class="badge bg-secondary mb-2">Etiqueta</span>
+              <h3 class="h6">La Ciudad inauguró una nueva sede del SAME</h3>
+              <p class="text-body-secondary mb-2">
+                Descripción del titular de una tarjeta con contenedor que puede contener hasta 2 líneas.
+              </p>
+              <p class="text-body-tertiary mb-0">Fecha de publicación: 22/04/2022</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <a class="card news-card h-100 text-decoration-none" href="#">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop" alt="" />
+            <div class="card-body">
+              <span class="badge bg-secondary mb-2">Etiqueta</span>
+              <h3 class="h6">Representaciones de la Ciudad acompañó las clínicas deportivas</h3>
+              <p class="text-body-secondary mb-2">Descripción del titular de una tarjeta con contenedor que puede contener hasta 2 líneas.</p>
+              <p class="text-body-tertiary mb-0">Fecha de publicación: 21/04/2022</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <a class="card news-card h-100 text-decoration-none" href="#">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=1200&auto=format&fit=crop" alt="" />
+            <div class="card-body">
+              <span class="badge bg-secondary mb-2">Etiqueta</span>
+              <h3 class="h6">El Registro Civil permite hacer trámites en forma 100% virtual</h3>
+              <p class="text-body-secondary mb-2">Descripción del titular de una tarjeta con contenedor que puede contener hasta 2 líneas.</p>
+              <p class="text-body-tertiary mb-0">Fecha de publicación: 20/04/2022</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <a class="link-primary" href="#">Ver todas las noticias →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Información institucional -->
+  <section class="pt-3 pb-5 bg-light">
+    <div class="container">
+      <h2 class="h4 mb-3">Información institucional</h2>
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="h6 text-body-secondary mb-1">Matías Lanusse</h3>
+              <p class="mb-0">Director Ejecutivo</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="h6 text-body-secondary mb-2">Contacto</h3>
+              <p class="mb-1">Teléfono: 4806-2500</p>
+              <p class="mb-0">Mail: comunicacion_agc@buenosaires.gob.ar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Redes -->
+      <div class="mt-4">
+        <h2 class="h4 mb-3">Redes sociales</h2>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-outline-secondary" href="#"><i class="bx bxl-facebook"></i> Facebook</a>
+          <a class="btn btn-outline-secondary" href="#"><i class="bx bxl-instagram"></i> Instagram</a>
+          <a class="btn btn-outline-secondary" href="#"><i class="bx bxl-twitter"></i> Twitter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  
+
+
+
+  <footer class="main-footer">
+    <div class="container">
+      <section class="footer-legal-section">
+        <h3 class="sr-only">Información gubernamental</h3>
+        <div class="row align-items-center">
+
+          <div class="col-12">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="/test/ssit.agcontrol.gob.ar/Default">
+                  Instructivos de Habilitaciones
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="/test/ssit.agcontrol.gob.ar/Solicitud/Bandeja">
+                  Bandeja de tramites
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="/test/ssit.agcontrol.gob.ar/Solicitud/BandejaNotificaciones">
+                  Bandeja de Notificaciones
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+
+          <div class="footer-license-text">
+           <div style="font-size: x-small" class="text-muted">
+                <div id="ctl14">
+	
+                        <span id="lblVersion">[Version 1 Revision 27868]</span>
+                    
+</div>
+            </div>
+        </div>
+
+
+
+      </section>
+      <section>
+        
+      </section>
+    </div>
+
+
+
+
+    <hr class="divider">
+
+
+
+
+            <div class="container">
+                <section class="footer-legal-section">
+                    <h3 class="sr-only">Información gubernamental</h3>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-5 col-xl-4 footer-content-img">
+                          <img class="d-md-none" src="https://gcba.github.io/Obelisco-V2/images/logo-footer-mobile.svg" alt="Logo de Ciudad de Buenos Aires" height="48">
+                          <img class="d-md-inline" src="https://gcba.github.io/Obelisco-V2/images/logo-footer.svg" alt="Logo de Ciudad de Buenos Aires" height="40">
+                          <img class="img-vamos-ba" src="https://gcba.github.io/Obelisco-V2/images/logo-footer-ba.svg" alt="Logo de Vamos Buenos Aires">
+                        </div>
+                        <div class="col-12">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="https://boletinoficial.buenosaires.gob.ar">Boletín oficial
+                  </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://buenosaires.gob.ar/inicio/terminos-y-condiciones">Términos y condiciones
+                  </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://buenosaires.gob.ar/inicio/privacidad">Política de privacidad
+                  </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://buenosaires.gob.ar/jefedegobierno/legalytecnica/normativa/boletin-oficial-y-registro/oficios-judiciales">Oficios judiciales
+                  </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://www.buenosaires.gob.ar/gobierno/transparencia">Transparencia
+                  </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="footer-license-text">
+                        Los contenidos de buenosaires.gob.ar están licenciados bajo Creative
+            Commons Reconocimiento 2.5 Argentina License.
+         
+                    </div>
+                </section>
+            </div>
+</footer>
+
+
+
+
+
+
+
+</body>
 </html>
